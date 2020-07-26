@@ -1,0 +1,5 @@
+package com.microservice.Dao;
+
+public class ExchangeValueRepository {
+
+}

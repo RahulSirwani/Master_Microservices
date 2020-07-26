@@ -1,0 +1,75 @@
+package com.microservice.dto;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class ExchangeValue
+{
+	@Id
+	@GeneratedValue
+	private int id;
+	
+	private String from;
+	private String to;
+	private BigDecimal ConversionMultiple;
+	private int port;
+	
+	public CurrencyValue() 
+	{
+		
+	}
+
+	public CurrencyValue(int id, String from, String to, BigDecimal ConversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.ConversionMultiple = ConversionMultiple;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return ConversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		ConversionMultiple = conversionMultiple;
+	}
+	
+	
+}

@@ -1,0 +1,32 @@
+package com.example.demo.dto;
+
+public class PostsDTO 
+{
+	private int id;
+	private String posts;
+	private int uId;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getPosts() {
+		return posts;
+	}
+	public void setPosts(String posts) {
+		this.posts = posts;
+	}
+	public int getuId() {
+		return uId;
+	}
+	public void setuId(int uId) {
+		this.uId = uId;
+	}
+	@Override
+	public String toString() {
+		return "PostsDTO [id=" + id + ", posts=" + posts + "]";
+	}
+	
+}

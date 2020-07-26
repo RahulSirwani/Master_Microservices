@@ -1,0 +1,58 @@
+package com.microservice.dto;
+
+import java.math.BigDecimal;
+
+public class CurrencyValue
+{
+	private int id;
+	private String from;
+	private String to;
+	private BigDecimal ConversionMultiple;
+	
+	public CurrencyValue() 
+	{
+		
+	}
+
+	public CurrencyValue(int id, String from, String to, BigDecimal ConversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		ConversionMultiple = ConversionMultiple;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return ConversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		ConversionMultiple = conversionMultiple;
+	}
+	
+	
+}

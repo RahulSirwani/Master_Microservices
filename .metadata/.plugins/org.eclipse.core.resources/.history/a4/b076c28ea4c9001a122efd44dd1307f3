@@ -1,0 +1,57 @@
+package com.example.demo.ctl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.dto.UserDTO;
+import com.example.demo.exception.CustomException;
+import com.example.demo.service.UserService;
+
+@RestController
+public class UserCtl 
+{
+	@Autowired
+	UserService service;
+	
+	@GetMapping("/users")
+	public List<UserDTO> getAll()
+	{
+		return service.getAll();
+	}
+	
+	@GetMapping("/users/{id}")
+	public UserDTO getById(@PathVariable int id)
+	{
+		UserDTO dto = service.getById(id);
+		if(dto==null)
+		{
+			throw new CustomException("This id Not Found");
+		}
+		
+		return service.getById(id);
+	}
+	
+	@PostMapping("/users")
+	public void save(@RequestBody UserDTO dto)
+	{
+		service.save(dto);
+	}
+	
+	@GetMapping("/delete/{id}")
+	public void delete(@PathVariable int id)
+	{
+		UserDTO dto = service.delete(id);
+		
+		if(dto==null)
+		{
+			throw new CustomException("This User doesn't Exists");
+		}
+	}
+	
+}

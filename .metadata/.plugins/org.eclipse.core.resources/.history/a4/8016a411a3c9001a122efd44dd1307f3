@@ -1,0 +1,63 @@
+package com.example.demo.service;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.UserDTO;
+
+@Service
+public class UserService 
+{
+	static ArrayList<UserDTO> users = new ArrayList<UserDTO>();
+	
+	int userCount=3;
+	
+	static{
+		users.add(new UserDTO(1, "Amit", new Timestamp(new Date().getTime())));
+		users.add(new UserDTO(2, "Ankur", new Timestamp(new Date().getTime())));
+		users.add(new UserDTO(3, "Deepak", new Timestamp(new Date().getTime())));
+	}
+	
+	public List<UserDTO> getAll()
+	{
+		return users;
+	}
+
+	public UserDTO getById(int id) {
+		
+		for(UserDTO dto : users)
+		{
+			if(dto.getId()==id)
+			{
+				return dto;
+			}
+		}
+		
+		return null;
+	}
+
+	public void save(UserDTO dto) 
+	{
+		userCount = users.size()+1;
+		dto.setId(userCount);
+		
+		users.add(dto);
+	}
+	
+	public UserDTO delete()
+	{
+		Iterator<UserDTO> itr = users.iterator();
+		while(itr.hasNext())
+		{
+			UserDTO dto = itr.next();
+			
+		}
+		
+	}
+	
+}

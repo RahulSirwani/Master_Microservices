@@ -1,0 +1,5 @@
+spring.messages.basename=messages
+
+#we are enabling everything by *
+#but we can enable specific things
+management.endpoints.web.exposure.include=*

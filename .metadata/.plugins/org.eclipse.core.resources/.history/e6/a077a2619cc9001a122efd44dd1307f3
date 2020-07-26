@@ -1,0 +1,19 @@
+package com.example.demo.service;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.PostsDTO;
+
+@Service
+public class PostsService 
+{
+	static ArrayList<PostsDTO> posts = new ArrayList<PostsDTO>();
+	
+	static {
+		posts.add(new PostsDTO(1, "Amit", 1));
+		posts.add(new PostsDTO(1, "Ankur", 2));
+		posts.add(new PostsDTO(1, "Deepak", 3));
+	}
+}

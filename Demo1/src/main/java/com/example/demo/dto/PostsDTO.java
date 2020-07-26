@@ -1,0 +1,58 @@
+package com.example.demo.dto;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class PostsDTO 
+{
+	@Id
+	@GeneratedValue
+	private int id;
+	
+	private String description;
+	
+	/*One User can have Many Posts
+	 * User have ManyToOne Relationship
+	 * with Post 
+	 * 
+	 * fetch = FetchType.LAZY
+	 * It will not retrive the user Unless you 
+	 * call :-  post.getUser()
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private UserDTO user;
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public UserDTO getUser() {
+		return user;
+	}
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+	@Override
+	public String toString() {
+		return "PostsDTO [id=" + id + ", description=" + description + "]";
+	}
+	
+	
+}

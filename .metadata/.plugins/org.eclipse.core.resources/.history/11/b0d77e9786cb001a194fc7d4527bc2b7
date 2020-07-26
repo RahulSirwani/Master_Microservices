@@ -1,0 +1,5 @@
+package com.example.demo.versioning;
+
+public class PersonV1 {
+
+}

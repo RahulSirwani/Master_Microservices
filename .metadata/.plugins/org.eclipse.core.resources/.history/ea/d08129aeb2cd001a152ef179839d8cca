@@ -1,0 +1,27 @@
+package com.microservice.ctl;
+
+import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.microservice.dto.CurrencyValue;
+
+@RestController
+public class CurrencyExchangeCtl 
+{
+	@Autowired
+	private Environment enviroment;
+	
+	@GetMapping("/currency-exchange-service/from/{from}/to/{to}")
+	public CurrencyValue getValue(@PathVariable String from,@PathVariable String to)
+	{
+		CurrencyValue currencyValue = new CurrencyValue(1, from, to, BigDecimal.valueOf(65));
+		currencyValue.setPort(Integer.parseInt(enviroment.getProperty("local.server.port")));
+		
+		return currencyValue;
+	}
+}

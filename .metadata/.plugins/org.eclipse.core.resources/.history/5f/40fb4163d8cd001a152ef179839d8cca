@@ -1,0 +1,13 @@
+package com.microservice.dto;
+
+import java.math.BigDecimal;
+
+public class CurrencyConversionBean 
+{
+	private int id;
+	private String from;
+	private String to;
+	private BigDecimal conversionMultiple;
+	private BigDecimal quantity;
+	private BigDecimal totalCalculatedAmount;
+}

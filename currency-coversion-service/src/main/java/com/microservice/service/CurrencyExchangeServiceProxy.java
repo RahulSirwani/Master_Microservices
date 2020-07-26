@@ -1,0 +1,37 @@
+package com.microservice.service;
+
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.microservice.dto.CurrencyConversionBean;
+
+/**
+ * @author rahulPC
+ * 
+ * Feign is a REST service Client makes it easy
+ * to call RESTful WebServices
+ * 
+ * When we use REStTemplate to call other services
+ * we have to write lot of duplicate kind of code each
+ * time to talk to the RestFul Service in Controller.
+ * 
+ * By using feign we can define simple Proxy interface 
+ * of that Microservice to which we want to talk.
+ * 
+ *  Simple Feign used to call other Microservices from the
+ *  Current MicroService in easy way.
+ *
+ */
+//@FeignClient(name = "currency-exchange-service",url = "localhost:8000")
+//@FeignClient(name = "currency-exchange-service")
+@FeignClient(name = "netflix-zuul-api-gateway-server")
+@RibbonClient(name = "currency-exchange-service")
+public interface CurrencyExchangeServiceProxy 
+{
+//	@GetMapping("/currency-exchange-service/from/{from}/to/{to}")
+	@GetMapping("/currency-exchange-service/currency-exchange-service/from/{from}/to/{to}")
+	public CurrencyConversionBean getValue(
+			@PathVariable("from") String from,@PathVariable("to") String to);
+}

@@ -1,0 +1,2 @@
+spring.application.name=currency-coversion-service
+server.port=8100

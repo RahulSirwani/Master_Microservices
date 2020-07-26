@@ -1,0 +1,9 @@
+package com.example.demo.ctl;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PostCtl 
+{
+	
+}

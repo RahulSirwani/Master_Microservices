@@ -1,0 +1,54 @@
+package com.example.demo.exception;
+
+import java.util.Date;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.example.demo.dto.ExceptionResponce;
+
+/**
+ * Handles application propagated exceptions
+ * 
+ * @author DELL
+ *
+ */
+@ControllerAdvice
+public class ApplicationExceptionHandlerCtl extends ResponseEntityExceptionHandler
+{
+
+	@ExceptionHandler(value = RuntimeException.class)
+	public ResponseEntity handleRuntimeException(RuntimeException e) {
+		
+		ExceptionResponce responce = new ExceptionResponce(new Date(), e.getMessage(), "details");
+		return new ResponseEntity(responce,HttpStatus.INTERNAL_SERVER_ERROR);
+//		return e.getMessage();
+	}
+	
+	@ExceptionHandler(value = CustomException.class)
+	public ResponseEntity userNotFound(CustomException e) {
+		
+		ExceptionResponce responce = new ExceptionResponce(new Date(), e.getMessage(), "details");
+		return new ResponseEntity(responce,HttpStatus.NOT_FOUND);
+//		return e.getMessage();
+	}
+	
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(
+			MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+		ExceptionResponce responce = new ExceptionResponce(new Date(), ex.getMessage(),ex.getBindingResult().toString());
+		return new ResponseEntity(responce,HttpStatus.BAD_REQUEST);
+	}
+
+}
+/*
+ * Thank you for your patience as we perform routine site maintenance. 
+ * We expect to be back shortly.
+ * 
+ */
